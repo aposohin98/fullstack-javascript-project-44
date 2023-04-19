@@ -28,11 +28,11 @@ export const getRandomNumbersPair = () => {
 
 export const askQuestion = (question, rightAnswer) => {
     if (typeof question !== 'string') {
-        throw new Error('Question must be a string!');
+        throw new Error('Argument must be a string!');
     }
 
     if (typeof rightAnswer !== 'string') {
-        throw new Error('Right answer must be a string!');
+        throw new Error('Argument must be a string!');
     }
 
     console.log(`Question: ${question}`);
