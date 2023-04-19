@@ -1,23 +1,32 @@
-import readlineSync from 'readline-sync';
+import {
+    getRandomNumber, greetingAndGetName, askQuestion, MAX_ROUNDS,
+} from '../index.js';
 
-const askQuestions = () => {
+const getNumbers = () => {
+    const numbers = [];
+
+    while (numbers.length < MAX_ROUNDS) {
+        const nextNumber = getRandomNumber(1, 100);
+
+        if (!numbers.includes(nextNumber)) {
+            numbers.push(nextNumber);
+        }
+    }
+
+    return numbers;
+};
+
+const game = () => {
     console.log('Answer "yes" if the number is even, otherwise answer "no".');
 
-    const numbers = [15, 6, 7];
+    const numbers = getNumbers();
 
-    for(let i = 0; i < numbers.length; i++) {
+    for (let i = 0; i < numbers.length; i += 1) {
         const currentNumber = numbers[i];
-
-        console.log(`Question: ${currentNumber}`);
-        const userAnswer = readlineSync.question('Your answer: ');
-
         const rightAnswer = (currentNumber % 2 === 0) ? 'yes' : 'no';
+        const isUserAnswerCorrect = askQuestion(currentNumber, rightAnswer);
 
-        if (userAnswer === rightAnswer) {
-            console.log('Correct!');
-        } else {
-            console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${rightAnswer}'.`);
-
+        if (!isUserAnswerCorrect) {
             return false;
         }
     }
@@ -26,19 +35,11 @@ const askQuestions = () => {
 };
 
 const even = () => {
-    console.log('Welcome to the Brain Games!');
+    const name = greetingAndGetName();
+    const isWinner = game();
+    const text = isWinner ? `Congratulations, ${name}!` : `Let's try again, ${name}!`;
 
-    const name = readlineSync.question('May I have your name? ');
-
-    console.log(`Hello, ${name}!`);
-
-    const isWinner = askQuestions();
-
-    if (isWinner) {
-        console.log(`Congratulations, ${name}!`);
-    } else {
-        console.log(`Let's try again, ${name}!`);
-    }
+    console.log(text);
 };
 
 export default even;
