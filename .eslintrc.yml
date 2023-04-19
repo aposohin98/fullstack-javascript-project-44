@@ -13,4 +13,3 @@ rules:
     - error
     - ignorePackages
     - js: always
-  indent: ["error", 4]
