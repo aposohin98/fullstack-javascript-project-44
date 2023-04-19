@@ -24,7 +24,7 @@ const game = () => {
     for (let i = 0; i < numbers.length; i += 1) {
         const currentNumber = numbers[i];
         const rightAnswer = (currentNumber % 2 === 0) ? 'yes' : 'no';
-        const isUserAnswerCorrect = askQuestion(currentNumber, rightAnswer);
+        const isUserAnswerCorrect = askQuestion(`${currentNumber}`, rightAnswer);
 
         if (!isUserAnswerCorrect) {
             return false;

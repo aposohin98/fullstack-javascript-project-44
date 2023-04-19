@@ -29,6 +29,8 @@ const getQuestionAndAnswer = () => {
 };
 
 const game = () => {
+    console.log('What number is missing in the progression?');
+
     for (let i = 0; i < MAX_ROUNDS; i += 1) {
         const [question, answer] = getQuestionAndAnswer();
         const isUserAnswerCorrect = askQuestion(question, answer);
