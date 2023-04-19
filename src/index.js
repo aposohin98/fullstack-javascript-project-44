@@ -19,7 +19,22 @@ export const getRandomNumber = (from, to) => {
     return Math.floor(Math.random() * (max - min) + min);
 };
 
+export const getRandomNumbersPair = () => {
+    const a = getRandomNumber(0, 100);
+    const b = getRandomNumber(0, 100);
+
+    return [a, b];
+};
+
 export const askQuestion = (question, rightAnswer) => {
+    if (typeof question !== 'string') {
+        throw new Error('Question must be a string!');
+    }
+
+    if (typeof rightAnswer !== 'string') {
+        throw new Error('Right answer must be a string!');
+    }
+
     console.log(`Question: ${question}`);
 
     const userAnswer = readlineSync.question('Your answer: ');

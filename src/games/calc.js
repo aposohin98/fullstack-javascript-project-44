@@ -1,5 +1,5 @@
 import {
-    getRandomNumber, greetingAndGetName, askQuestion, MAX_ROUNDS,
+    getRandomNumber, greetingAndGetName, askQuestion, MAX_ROUNDS, getRandomNumbersPair,
 } from '../index.js';
 
 const operationMap = {
@@ -16,13 +16,6 @@ const getNextOperation = () => {
     return nextOperation;
 };
 
-const getNextNumbers = () => {
-    const a = getRandomNumber(0, 100);
-    const b = getRandomNumber(0, 100);
-
-    return [a, b];
-};
-
 const game = () => {
     console.log('What is the result of the expression?');
 
@@ -30,9 +23,9 @@ const game = () => {
         const operation = getNextOperation();
         const getRightAnswer = operationMap[operation];
 
-        const [a, b] = getNextNumbers();
+        const [a, b] = getRandomNumbersPair();
         const rightAnswer = getRightAnswer(a, b);
-        const isUserAnswerCorrect = askQuestion(`${a} ${operation} ${b}`, rightAnswer);
+        const isUserAnswerCorrect = askQuestion(`${a} ${operation} ${b}`, `${rightAnswer}`);
 
         if (!isUserAnswerCorrect) {
             return false;
